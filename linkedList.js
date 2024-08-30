@@ -76,11 +76,31 @@ class LinkedList {
     return undefined
   }
 
+  findByIndex(index) {
+    // Takes O(n) time
+    let current = this.head
+    let currentIndex = 0
+
+    while (current) {
+      if (index === currentIndex) {
+        return current
+      } else {
+        current = current.nextNode
+        currentIndex++
+      }
+    }
+
+    return undefined
+  }
+
   insert(data, index) {
     // inserting takes O(1) but finding the node
     // takes O(n). Thus, overall time is linear.
     if (index === 0) {
-      return this.add(data)
+      const newNode = new Node(data)
+      newNode.nextNode = this.head
+      this.head = newNode
+      return
     }
 
     const newNode = new Node(data)
@@ -99,17 +119,17 @@ class LinkedList {
     newNode.nextNode = nextNode
   }
 
-  remove(key) {
+  remove(data) {
     // O(n)
     let current = this.head
     let previous = null
     let found = false
 
     while (current && !found) {
-      if (current.data === key && current === this.head) {
+      if (current.data === data && current === this.head) {
         found = true
         this.head = current.nextNode
-      } else if (current.data === key) {
+      } else if (current.data === data) {
         found = true
         previous.nextNode = current.nextNode
       } else {
@@ -120,21 +140,37 @@ class LinkedList {
 
     return current
   }
+
+  removeByIndex(index) {
+    // O(n)
+    let current = this.head
+    let currentIndex = 0
+    let previous = null
+    let found = false
+
+    while (current && !found) {
+      if (currentIndex === index && current === this.head) {
+        found = true
+        this.head = current.nextNode
+      } else if (currentIndex === index) {
+        found = true
+        previous.nextNode = current.nextNode
+      } else {
+        previous = current
+        current = current.nextNode
+        currentIndex++
+      }
+    }
+
+    return current
+  }
 }
 
 const list = new LinkedList()
 list.unshift(1)
-list.unshift(1)
-list.unshift(1)
-list.unshift(1)
+list.unshift(2)
+list.unshift(3)
+list.unshift(4)
 list.unshift(5)
-
-console.log(list.view())
-
-list.insert(7, 3)
-
-console.log(list.view())
-
-list.remove(7)
 
 console.log(list.view())
