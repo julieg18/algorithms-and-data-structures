@@ -173,4 +173,4 @@ list.unshift(3)
 list.unshift(4)
 list.unshift(5)
 
-console.log(list.view())
+module.exports = { LinkedList }

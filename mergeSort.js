@@ -60,4 +60,3 @@ const verifySorted = (list) => {
 }
 
 const list = [8, 6, 5, 9, 78, 888, 86, 10, 5, 82, 98]
-console.log(mergeSort(list))
