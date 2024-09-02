@@ -1,5 +1,5 @@
 const mergeSort = (list) => {
-  // O (n log n)
+  // O(kn log n)
 
   if (list.length <= 1) {
     return list
@@ -12,6 +12,7 @@ const mergeSort = (list) => {
 }
 
 const split = (list) => {
+  // Takes overall O(log n)
   const midpointInd = Math.ceil(list.length / 2)
   const leftHalf = list.slice(0, midpointInd)
   const rightHalf = list.slice(midpointInd)
@@ -19,6 +20,7 @@ const split = (list) => {
 }
 
 const mergeLists = (leftHalf, rightHalf) => {
+  // O(n)
   const list = []
   let leftInd = 0
   let rightInd = 0
@@ -47,6 +49,14 @@ const mergeLists = (leftHalf, rightHalf) => {
   }
 
   return list
+}
+
+const verifySorted = (list) => {
+  if (list.length === 0 || list.length === 1) {
+    return true
+  }
+
+  return list[0] <= list[1] && verifySorted(list.slice(1))
 }
 
 const list = [8, 6, 5, 9, 78, 888, 86, 10, 5, 82, 98]
