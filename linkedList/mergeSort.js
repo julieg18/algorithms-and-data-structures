@@ -1,7 +1,7 @@
 const { LinkedList } = require('./linkedList')
 
 const mergeSort = (linkedList) => {
-  // Runs in O(kn log n)
+  // Runs in O(kn log n) time
   if (linkedList.getLength() === 1 || !linkedList.head) {
     return linkedList
   }
