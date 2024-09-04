@@ -9,6 +9,10 @@ class Node {
   }
 
   setNextNode(node) {
+    if (node === this) {
+      throw new Error('Cannot set circular reference')
+    }
+
     this.nextNode = node
   }
 }
