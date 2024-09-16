@@ -6,19 +6,6 @@ class Node {
   }
 }
 
-const printTree = (node, prefix = '', isLeft = true) => {
-  if (node === null) {
-    return
-  }
-  if (node.rightChild !== null) {
-    printTree(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false)
-  }
-  console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`)
-  if (node.leftChild !== null) {
-    printTree(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true)
-  }
-}
-
 class BinarySearchTree {
   constructor() {
     this.root = null
@@ -54,6 +41,32 @@ class BinarySearchTree {
     this.insertNode(node.rightChild, newNode)
   }
 
+  printTree(node, prefix = '', isLeft = true) {
+    if (node === undefined) {
+      node = this.root
+    }
+
+    if (node === null) {
+      return
+    }
+
+    if (node.rightChild !== null) {
+      this.printTree(
+        node.rightChild,
+        `${prefix}${isLeft ? '│   ' : '    '}`,
+        false
+      )
+    }
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`)
+    if (node.leftChild !== null) {
+      this.printTree(
+        node.leftChild,
+        `${prefix}${isLeft ? '    ' : '│   '}`,
+        true
+      )
+    }
+  }
+
   // remove(data)
   // findMinNode()
   // getRootNode()
@@ -70,4 +83,4 @@ tree.insert(7)
 tree.insert(9)
 tree.insert(14)
 
-printTree(tree.root)
+tree.printTree()
