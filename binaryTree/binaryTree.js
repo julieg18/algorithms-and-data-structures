@@ -152,6 +152,26 @@ class BinarySearchTree {
       this.inorderNode(node.rightChild)
     }
   }
+
+  find(data) {
+    return this.findNode(this.root, data)
+  }
+
+  findNode(node, data) {
+    if (node === null) {
+      return null
+    }
+
+    if (data < node.data) {
+      return this.findNode(node.leftChild)
+    }
+
+    if (data > node.data) {
+      return this.findNode(node.rightChild)
+    }
+
+    return node
+  }
 }
 
 const tree = new BinarySearchTree()
