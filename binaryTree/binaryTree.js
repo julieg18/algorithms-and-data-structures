@@ -57,8 +57,55 @@ class BinarySearchTree {
     }
   }
 
-  // remove(data)
-  // findMinNode()
+  remove(data) {
+    this.root = this.removeNode(this.root, data)
+  }
+
+  removeNode(node, key) {
+    if (node === null) {
+      return null
+    }
+
+    if (key < node.data) {
+      node.leftChild = this.removeNode(node.leftChild, key)
+      return node
+    }
+
+    if (key > node.data) {
+      node.rightChild = this.removeNode(node.rightChild, key)
+      return node
+    }
+
+    if (node.leftChild === null && node.rightChild === null) {
+      node = null
+      return node
+    }
+
+    if (node.leftChild === null) {
+      node = node.rightChild
+      return node
+    }
+
+    if (node.rightChild === null) {
+      node = node.leftChild
+      return node
+    }
+
+    const minNode = this.findMinNode(node.rightChild)
+    node.data = minNode.data
+
+    node.rightChild = this.removeNode(node.rightChild, minNode.data)
+    return node
+  }
+
+  findMinNode(node) {
+    if (node.leftChild === null) {
+      return node
+    }
+
+    return this.findMinNode(node.leftChild)
+  }
+
   // getRootNode()
   // inorder(node)
   // preorder(node)
@@ -66,11 +113,12 @@ class BinarySearchTree {
 }
 
 const tree = new BinarySearchTree()
-tree.insert(10)
-tree.insert(8)
-tree.insert(11)
-tree.insert(7)
-tree.insert(9)
+tree.insert(15)
 tree.insert(14)
+tree.insert(13)
+tree.insert(12)
+tree.insert(11)
+tree.insert(10)
+tree.insert(9)
 
 tree.view()
