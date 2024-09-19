@@ -49,19 +49,11 @@ class BinarySearchTree {
     }
 
     if (node.rightChild !== null) {
-      this.printTree(
-        node.rightChild,
-        `${prefix}${isLeft ? '│   ' : '    '}`,
-        false
-      )
+      this.view(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false)
     }
     console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`)
     if (node.leftChild !== null) {
-      this.printTree(
-        node.leftChild,
-        `${prefix}${isLeft ? '    ' : '│   '}`,
-        true
-      )
+      this.view(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true)
     }
   }
 
@@ -81,4 +73,4 @@ tree.insert(7)
 tree.insert(9)
 tree.insert(14)
 
-tree.printTree()
+tree.view()
