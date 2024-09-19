@@ -11,8 +11,6 @@ class BinarySearchTree {
     this.root = null
   }
 
-  view() {}
-
   insert(data) {
     const newNode = new Node(data)
 
@@ -41,7 +39,7 @@ class BinarySearchTree {
     this.insertNode(node.rightChild, newNode)
   }
 
-  printTree(node, prefix = '', isLeft = true) {
+  view(node, prefix = '', isLeft = true) {
     if (node === undefined) {
       node = this.root
     }
