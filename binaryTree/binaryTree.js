@@ -114,19 +114,54 @@ class BinarySearchTree {
     return this.findMinNode(node.leftChild)
   }
 
-  // getRootNode()
-  // inorder(node)
-  // preorder(node)
-  // postorder(node)
+  viewPreorder() {
+    this.preorderNode(this.root)
+  }
+
+  preorderNode(node) {
+    // preorder traversal is from the root to the left subtree then to the right subtree
+    if (node !== null) {
+      console.log(node.data)
+      this.preorderNode(node.leftChild)
+      this.preorderNode(node.rightChild)
+    }
+  }
+
+  viewPostorder() {
+    this.postorderNode(this.root)
+  }
+
+  postorderNode(node) {
+    // postorder traversal is from the left subtree to the right subtree then to the root
+    if (node !== null) {
+      this.postorderNode(node.leftChild)
+      this.postorderNode(node.rightChild)
+      console.log(node.data)
+    }
+  }
+
+  viewInorder() {
+    this.inorderNode(this.root)
+  }
+
+  inorderNode(node) {
+    // inorder traversal is from the left subtree to the root then to the right subtree
+    if (node !== null) {
+      this.inorderNode(node.leftChild)
+      console.log(node.data)
+      this.inorderNode(node.rightChild)
+    }
+  }
 }
 
 const tree = new BinarySearchTree()
-tree.insert(15)
-tree.insert(14)
-tree.insert(13)
-tree.insert(12)
-tree.insert(11)
 tree.insert(10)
+tree.insert(18)
+tree.insert(8)
+tree.insert(16)
+tree.insert(17)
+tree.insert(11)
 tree.insert(9)
+tree.insert(7)
 
 tree.view()
