@@ -39,21 +39,29 @@ class BinarySearchTree {
     this.insertNode(node.rightChild, newNode)
   }
 
-  view(node, prefix = '', isLeft = true) {
-    if (node === undefined) {
-      node = this.root
-    }
+  view() {
+    this.viewNode(this.root)
+  }
 
+  viewNode(node, prefix = '', isLeft = true) {
     if (node === null) {
       return
     }
 
     if (node.rightChild !== null) {
-      this.view(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false)
+      this.viewNode(
+        node.rightChild,
+        `${prefix}${isLeft ? '│   ' : '    '}`,
+        false
+      )
     }
     console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`)
     if (node.leftChild !== null) {
-      this.view(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true)
+      this.viewNode(
+        node.leftChild,
+        `${prefix}${isLeft ? '    ' : '│   '}`,
+        true
+      )
     }
   }
 
